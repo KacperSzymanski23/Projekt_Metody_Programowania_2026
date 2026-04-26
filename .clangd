@@ -1,0 +1,34 @@
+CompileFlags:
+  Add:
+    [
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-Wnon-virtual-dtor",
+      "-Wdouble-promotion",
+      "-Wformat=2",
+      "-Wnull-dereference",
+      "-Wimplicit-fallthrough",
+      "-Werror=return-type",
+    ]
+
+  Remove: ["-fno-exceptions", "-fno-rtti", "-DTRACY_ENABLE"]
+
+  BuiltinHeaders: QueryDriver
+
+  CompilationDatabase: build
+
+Completion:
+  HeaderInsertion: Never
+
+InlayHints:
+  BlockEnd: true
+  DefaultArguments: true
+
+Hover:
+  ShowAKA: true
+
+Documentation:
+  CommentFormat: Doxygen
