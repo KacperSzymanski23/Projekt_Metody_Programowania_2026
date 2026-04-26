@@ -118,6 +118,6 @@ Jak pojawi się coś innego to pisz na Messengerze.
 
 ## Przydatne linki
 
-- [Dokumentacja Meson](https://mesonbuild.com/documentation.html)
+- [Dokumentacja Meson](https://mesonbuild.com)
 - [Dokumentacja Git](https://git-scm.com/doc)
 - [Winget – dokumentacja Microsoft](https://learn.microsoft.com/pl-pl/windows/package-manager/winget/)
