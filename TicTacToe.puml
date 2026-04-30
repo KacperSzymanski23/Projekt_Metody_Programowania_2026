@@ -1,0 +1,124 @@
+@startuml TicTacToe
+
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+skinparam classBorderRadius 6
+skinparam ArrowColor #73726c
+skinparam ClassBorderColor #7F77DD
+skinparam ClassBackgroundColor #EEEDFE
+skinparam ClassHeaderBackgroundColor #AFA9EC
+skinparam NoteBackgroundColor #FAEEDA
+skinparam NoteBorderColor #EF9F27
+
+skinparam classAttributeIconSize 0
+skinparam style strictuml
+skinparam linetype ortho
+
+
+class MyExceptions {
+  + {static} InvalidArgumentException : exception
+  + {static} InvalidMoveException     : exception
+  + {static} InvalidSymbolException   : exception
+  + {static} GameAlreadyFinishedException : exception
+}
+
+
+abstract class Board {
+  + size()  : size_t
+  + operator()(x : size_t, y : size_t) : char&
+  + operator()(x : size_t, y : size_t) const : char
+  + full()  : bool
+  + clear() : void
+  + {abstract} ~Board()
+}
+
+class "operator<<" as OpOut << (F,orchid) free function >> {
+    + operator<<(out : ostream&, b : Board&) : ostream&
+}
+
+' Nie wiem czy to musi być tablica char'ów bo jeśli nie to lepiej by można to zrobić na bitach tak że bit 0 -> O, bit 1 -> X, bit pusty -> puste pole albo w jakiś inny sposób bo char'y są nie optymalne a my potrzebujemy 3 stany tylko
+class BoardExt {
+  - _n      : size_t
+  - _fields : char[][]
+  + BoardExt(n : size_t)
+  + ~BoardExt()
+  + size()  : size_t
+  + operator()(x : size_t, y : size_t) : char&
+  + operator()(x : size_t, y : size_t) const : char
+  + full()  : bool
+  + clear() : void
+}
+
+
+class Move {
+  - _x : size_t
+  - _y : size_t
+  + Move(x : size_t, y : size_t)
+  + x() const : size_t
+  + y() const : size_t
+}
+
+
+abstract class Strategy {
+  + chooseMove(b : Board&, symbol : char) : Move
+  + {abstract} ~Strategy()
+}
+
+class MinMaxStrategy {
+  + chooseMove(b : Board&, symbol : char) : Move
+  + ~MinMaxStrategy()
+  - minmax(b : Board&, symbol : char,\n         isMaximizing : bool) : int
+  - evaluate(b : Board&, symbol : char) : int
+}
+
+
+class AlphaBetaStrategy {
+  + chooseMove(b : Board&, symbol : char) : Move
+  + ~AlphaBetaStrategy()
+  - alphaBeta(b : Board&, symbol : char,\n            isMaximizing : bool,\n            alpha : int, beta : int) : int
+  - evaluate(b : Board&, symbol : char) : int
+}
+
+
+class TicTacToeGame {
+  - _board       : Board*
+  - _xStrategy   : Strategy*
+  - _oStrategy   : Strategy*
+  - _currentTurn : char
+  + TicTacToeGame(b : Board*,\n                 xStrategy : Strategy*,\n                 oStrategy : Strategy*)
+  + ~TicTacToeGame()
+  + makeMove(m : Move, symbol : char) : bool
+  + play() : void
+  + finished() const : bool
+  + winner() const : char
+  + changeStrategy(symbol : char,\n                  newStrategy : Strategy*) : void
+}
+
+Board       <|--  BoardExt
+Strategy    <|--  MinMaxStrategy
+Strategy    <|--  AlphaBetaStrategy
+
+
+TicTacToeGame o--> Board     : _board
+TicTacToeGame o--> Strategy  : _xStrategy
+TicTacToeGame o--> Strategy  : _oStrategy
+
+
+Strategy     ..>  Board      : <<uses>>
+Strategy     ..>  Move       : <<creates>>
+
+
+TicTacToeGame ..> Move       : <<uses>>
+
+
+Board         ..>  MyExceptions : <<throws>>
+BoardExt      ..>  MyExceptions : <<throws>>
+Move          ..>  MyExceptions : <<throws>>
+Strategy      ..>  MyExceptions : <<throws>>
+MinMaxStrategy     ..>  MyExceptions : <<throws>>
+AlphaBetaStrategy  ..>  MyExceptions : <<throws>>
+TicTacToeGame ..>  MyExceptions : <<throws>>
+
+OpOut ..> Board : <<uses>>
+
+@enduml
