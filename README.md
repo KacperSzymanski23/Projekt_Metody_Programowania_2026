@@ -2,7 +2,7 @@
 
 Wiem, że jeszcze nie wybraliśmy tematu, ale jak już to zrobimy, to musisz zainstalować parę rzeczy. Na ostatnim projekcie z C++ ja i kolega mieliśmy problem z odpaleniem projektu, który miał dużo zależności do pobrania. Więc teraz masz taki mini tutorial jak to zrobić. **Jeszcze go nie skończyłem, więc może jeszcze coś nie działać.** Może jakiś skrypt zrobię, co to od razu ogarnie i zrobi to za nas, ale na razie nie mam czasu.
 
-> **Uwaga:** Plikiem `native.ini` się nie przejmój nie jest ci do niczeho potrzebny.
+> **Uwaga:** Plikiem `native.ini` się nie przejmuj nie jest ci do niczego potrzebny.
 
 ---
 
@@ -42,7 +42,7 @@ Ninja to backend dla Mesona. Jest to narzędzie do budowania projektów.
 
 ### 4. pkg-config-lite
 
-Bez tego Meson ma problem ze znalezieniem zależności. Narazie się to nam nie przyda, ale wkrótce będziemy dodawać biblioteki do projektu, więc warto to mieć od razu.
+Bez tego Meson ma problem ze znalezieniem zależności. Na razie się to nam nie przyda, ale wkrótce będziemy dodawać biblioteki do projektu, więc warto to mieć od razu.
 
 Można zainstalować przez Winget:
 
@@ -56,7 +56,7 @@ Jeśli winget będzie nie działa, to jest też opcja instalacji [pkg-config-lit
 
 ### 5. CLang
 
-Opcjonalnie możesz zainstalować ten kompilator, ale nie jest to wymagane. Ja go używam do skompilowania projektów, ale zamiast tego możesz skompilować je z wykorzystaniem domyslego kompilatora z CLion'a.
+Opcjonalnie możesz zainstalować ten kompilator, ale nie jest to wymagane. Ja go używam do skompilowania projektów, ale zamiast tego możesz skompilować je z wykorzystaniem domyślnego kompilatora z CLion'a.
 
 ```powershell
 winget install --id LLVM.LLVM -e --source winget
@@ -112,7 +112,7 @@ pkg-config --version
 Po poprawnej konfiguracji środowiska możemy skompilować projekt:
 
 1. Otwórz [CLion](https://www.jetbrains.com/clion/).
-2. Wybierz **File → Open** i wybież folder wcześniej sklonowanego repozytorium **Projekt_Metody_Programowania_2026**.
+2. Wybierz **File → Open** i wybierz folder wcześniej sklonowanego repozytorium **Projekt_Metody_Programowania_2026**.
 3. CLion automatycznie wykryje plik `meson.build` i zaproponuje konfigurację projektu — kliknij **OK** / **Load Project**.
 4. Jeśli CLion pyta o ścieżkę do Mesona: przejdź do **Settings → Build, Execution, Deployment → Meson** i podaj ścieżkę do `meson.exe`.
 5. Kliknij zielony przycisk **▶ Run**, żeby zbudować i uruchomić projekt.
