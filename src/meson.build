@@ -9,9 +9,9 @@ lib_src = files(
   'lib/ticTacToeGame.cpp',
 )
 
-include = include_directories('lib')
+tictactoe_inc = include_directories('lib')
 
-library_tictactoe = library('tictactoe', sources: lib_src, include_directories: include)
+library_tictactoe = library('tictactoe', sources: lib_src, include_directories: tictactoe_inc)
 
 src = files('main.cpp')
 
