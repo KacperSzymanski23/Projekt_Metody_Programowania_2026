@@ -27,9 +27,9 @@ namespace MyExceptions {
 				}
 		};
 
-		class GameAlreadyOverException : public std::logic_error {
+		class GameAlreadyFinishedException : public std::logic_error {
 			  public:
-				explicit GameAlreadyOverException(const std::string &message)
+				explicit GameAlreadyFinishedException(const std::string &message)
 					: std::logic_error(message) {
 				}
 		};
