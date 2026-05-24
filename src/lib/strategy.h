@@ -18,7 +18,7 @@ namespace TicTacToe {
 
 				virtual ~Strategy() = default;
 
-				virtual Move chooseMove(const Board &board, char symbol) = 0;
+				virtual Move chooseMove(const Board<char> &board, char symbol) = 0;
 		};
 } // namespace TicTacToe
 

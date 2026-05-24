@@ -1,7 +1,7 @@
 #include "board.h"
 
 namespace TicTacToe {
-		std::ostream &operator<<(std::ostream &output, const Board &board) {
+		std::ostream &operator<<(std::ostream &output, const Board<char> &board) {
 				const size_t BOARD_SIZE = board.size();
 
 				for (size_t y = 0; y < BOARD_SIZE; y++) {
