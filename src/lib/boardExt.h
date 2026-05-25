@@ -49,6 +49,10 @@ namespace TicTacToe {
 						return m_fields.at(x + (y * m_n));
 				}
 
+				[[nodiscard]] bool isEmpty() const override {
+						return std::any_of(m_fields.cbegin(), m_fields.cend(), [](T field) { return field == static_cast<T>(NULL); });
+				}
+
 			  private:
 				size_t m_n;
 				std::vector<T> m_fields;

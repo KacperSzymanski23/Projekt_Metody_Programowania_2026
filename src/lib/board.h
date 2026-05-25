@@ -26,6 +26,8 @@ namespace TicTacToe {
 				friend std::ostream &operator<<(std::ostream &output, const Board &board);
 
 				virtual void clear() = 0;
+
+				[[nodiscard]] virtual bool isEmpty() const = 0;
 		};
 } // namespace TicTacToe
 
