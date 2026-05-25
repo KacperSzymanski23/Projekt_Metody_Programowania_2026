@@ -6,10 +6,10 @@
 namespace TicTacToe {
 		Move MinMaxStrategy::chooseMove(Board<char> &board, char symbol) {
 				if (symbol != 'X' && symbol != 'O') {
-						throw MyExceptions::InvalidArgumentException("Symbol must be X or O");
+						throw MyExceptions::InvalidSymbolException("Symbol must be X or O");
 				}
 				if (board.full()) {
-						throw MyExceptions::InvalidArgumentException("Board is full");
+						throw MyExceptions::InvalidMoveException("Board is full");
 				}
 
 				int32_t bestScore{std::numeric_limits<int32_t>::min()};
@@ -25,7 +25,7 @@ namespace TicTacToe {
 								if (board(column, row) == '\0') {
 										board(column, row) = symbol;
 
-										const int32_t SCORE = minimax(board, symbol, true);
+										const int32_t SCORE = minimax(board, symbol, false);
 
 										board(column, row) = '\0';
 
@@ -75,7 +75,7 @@ namespace TicTacToe {
 										if (board(column, row) == '\0') {
 												board(column, row) = CURRENT_SYMBOL;
 
-												best = std::max(best, minimax(board, CURRENT_SYMBOL, false));
+												best = std::max(best, minimax(board, symbol, false));
 
 												board(column, row) = '\0';
 										}
@@ -90,7 +90,7 @@ namespace TicTacToe {
 								if (board(column, row) == '\0') {
 										board(column, row) = CURRENT_SYMBOL;
 
-										best = std::min(best, minimax(board, CURRENT_SYMBOL, true));
+										best = std::min(best, minimax(board, symbol, true));
 
 										board(column, row) = '\0';
 								}

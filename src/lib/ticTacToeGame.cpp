@@ -11,23 +11,24 @@ namespace TicTacToe {
 			, m_currentTurnSymbol('X') {
 
 				if (board == nullptr) {
-						throw std::invalid_argument("Board cannot be nullptr");
+						throw MyExceptions::InvalidArgumentException("Board cannot be nullptr");
 				}
 				if (xStrategy == nullptr) {
-						throw std::invalid_argument("X strategy cannot be nullptr");
+						throw MyExceptions::InvalidArgumentException("X strategy cannot be nullptr");
 				}
 				if (oStrategy == nullptr) {
-						throw std::invalid_argument("O strategy cannot be nullptr");
+						throw MyExceptions::InvalidArgumentException("O strategy cannot be nullptr");
 				}
 		}
 
 		bool TicTacToeGame::makeMove(Move move, char symbol) {
 				if (symbol != 'X' && symbol != 'O') {
-						throw MyExceptions::InvalidArgumentException("Symbol must be X or O");
+						throw MyExceptions::InvalidSymbolException("Symbol must be X or O");
+						throw MyExceptions::InvalidSymbolException("Symbol must be X or O");
 				}
 
 				if (finished()) {
-						throw MyExceptions::InvalidArgumentException("Move cannot be made after game is finished");
+						throw MyExceptions::GameAlreadyFinishedException("Move cannot be made after game is finished");
 				}
 
 				const size_t BOARD_SIZE{m_board->size()};
@@ -82,7 +83,7 @@ namespace TicTacToe {
 
 		void TicTacToeGame::changeStrategy(char symbol, Strategy *strategy) {
 				if (symbol != 'X' && symbol != 'O') {
-						throw MyExceptions::InvalidArgumentException("Symbol must be X or O");
+						throw MyExceptions::InvalidSymbolException("Symbol must be X or O");
 				}
 
 				if (strategy == nullptr) {

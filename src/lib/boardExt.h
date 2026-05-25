@@ -32,7 +32,9 @@ namespace TicTacToe {
 				}
 
 				[[nodiscard]] bool full() const override {
-						return std::none_of(m_fields.cbegin(), m_fields.cend(), [](T field) { return field == static_cast<T>(NULL); });
+						return std::none_of(m_fields.cbegin(), m_fields.cend(), [](T field) {
+								return field == static_cast<T>(NULL) || field == static_cast<T>('0');
+						});
 				}
 
 				void clear() override {
@@ -50,7 +52,9 @@ namespace TicTacToe {
 				}
 
 				[[nodiscard]] bool isEmpty() const override {
-						return std::any_of(m_fields.cbegin(), m_fields.cend(), [](T field) { return field == static_cast<T>(NULL); });
+						return std::any_of(m_fields.cbegin(), m_fields.cend(), [](T field) {
+								return field == static_cast<T>(NULL) || field == static_cast<T>('0');
+						});
 				}
 
 			  private:

@@ -5,10 +5,10 @@
 namespace TicTacToe {
 		Move AlphaBetaStrategy::chooseMove(Board<char> &board, char symbol) {
 				if (symbol != 'X' && symbol != 'O') {
-						throw MyExceptions::InvalidArgumentException("Symbol must be X or O");
+						throw MyExceptions::InvalidSymbolException("Symbol must be X or O");
 				}
 				if (board.full()) {
-						throw MyExceptions::InvalidArgumentException("Board is full");
+						throw MyExceptions::InvalidMoveException("Board is full");
 				}
 
 				int32_t bestScore{std::numeric_limits<int32_t>::min()};
@@ -27,7 +27,7 @@ namespace TicTacToe {
 								if (board(column, row) == '\0') {
 										board(column, row) = symbol;
 
-										const int32_t SCORE = alphaBeta(board, symbol, true, ALPHA_INIT, BETA_INIT);
+										const int32_t SCORE = alphaBeta(board, symbol, false, ALPHA_INIT, BETA_INIT);
 
 										board(column, row) = '\0';
 
@@ -78,7 +78,7 @@ namespace TicTacToe {
 										if (board(column, row) == '\0') {
 												board(column, row) = CURRENT_SYMBOL;
 
-												const int32_t TEMP_SCORE = alphaBeta(board, CURRENT_SYMBOL, false, alpha, beta);
+												const int32_t TEMP_SCORE = alphaBeta(board, symbol, false, alpha, beta);
 
 												board(column, row) = '\0';
 
@@ -91,6 +91,8 @@ namespace TicTacToe {
 										}
 								}
 						}
+
+						return bestScore;
 				}
 
 				int32_t bestScore{std::numeric_limits<int32_t>::max()};
@@ -100,7 +102,7 @@ namespace TicTacToe {
 								if (board(column, row) == '\0') {
 										board(column, row) = CURRENT_SYMBOL;
 
-										const int32_t TEMP_SCORE = alphaBeta(board, CURRENT_SYMBOL, true, alpha, beta);
+										const int32_t TEMP_SCORE = alphaBeta(board, symbol, true, alpha, beta);
 
 										board(column, row) = '\0';
 
