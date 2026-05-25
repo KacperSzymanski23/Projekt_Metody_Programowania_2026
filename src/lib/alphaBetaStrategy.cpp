@@ -27,7 +27,7 @@ namespace TicTacToe {
 								if (board(column, row) == '\0') {
 										board(column, row) = symbol;
 
-										const int32_t SCORE = alphaBeta(board, symbol, true, ALPHA_INIT, BETA_INIT);
+										const int32_t SCORE = alphaBeta(board, symbol, false, ALPHA_INIT, BETA_INIT);
 
 										board(column, row) = '\0';
 
@@ -78,7 +78,7 @@ namespace TicTacToe {
 										if (board(column, row) == '\0') {
 												board(column, row) = CURRENT_SYMBOL;
 
-												const int32_t TEMP_SCORE = alphaBeta(board, CURRENT_SYMBOL, false, alpha, beta);
+												const int32_t TEMP_SCORE = alphaBeta(board, symbol, false, alpha, beta);
 
 												board(column, row) = '\0';
 
@@ -100,7 +100,7 @@ namespace TicTacToe {
 								if (board(column, row) == '\0') {
 										board(column, row) = CURRENT_SYMBOL;
 
-										const int32_t TEMP_SCORE = alphaBeta(board, CURRENT_SYMBOL, true, alpha, beta);
+										const int32_t TEMP_SCORE = alphaBeta(board, symbol, true, alpha, beta);
 
 										board(column, row) = '\0';
 
