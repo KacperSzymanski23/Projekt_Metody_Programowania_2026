@@ -12,9 +12,8 @@ foreach src : test_sources
     exe = executable(
         test_name,
         src,
-        include_directories: [tictactoe_inc, test_inc],
-        link_with: library_tictactoe,
-        dependencies: catch2_dep,
+        include_directories: [test_inc],
+        dependencies: [catch2_dep, tictactoe_dep],
     )
     test(test_name, exe)
 endforeach
