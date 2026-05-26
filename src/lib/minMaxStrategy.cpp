@@ -2,7 +2,8 @@
 #include "board.h"
 #include "myexceptions.h"
 #include "utils.h"
-
+// STD
+#include <limits>
 namespace TicTacToe {
 		Move MinMaxStrategy::chooseMove(Board<char> &board, char symbol) {
 				if (symbol != 'X' && symbol != 'O') {
