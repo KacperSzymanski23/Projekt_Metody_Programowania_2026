@@ -9,7 +9,7 @@ project(
 subdir('src')
 
 if get_option('tests')
-  catch2_dep = dependency('catch2-with-main')
+  catch2_dep = dependency('catch2-with-main', default_options : ['tests=false'])
 
   if catch2_dep.found()
     subdir('tests')
