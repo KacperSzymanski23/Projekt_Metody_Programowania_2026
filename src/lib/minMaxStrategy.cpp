@@ -51,7 +51,7 @@ namespace TicTacToe {
 						return 1;
 				}
 
-				if (Utils::hasWon(board, forSymbol == 'X' ? 'O' : 'X')) {
+				if (Utils::hasWon(board, Utils::getOpponent(forSymbol))) {
 						return -1;
 				}
 
