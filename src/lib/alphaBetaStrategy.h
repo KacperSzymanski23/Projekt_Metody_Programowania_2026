@@ -11,7 +11,7 @@ namespace TicTacToe {
 				Move chooseMove(Board<char> &board, char symbol) override;
 
 			  private:
-				int32_t evaluate(const Board<char> &board, char forSymbol);
+				static int32_t evaluate(const Board<char> &board, char forSymbol);
 				int32_t alphaBeta(Board<char> &board, char symbol, bool isMaximizing, int32_t alpha, int32_t beta);
 		};
 } // namespace TicTacToe

@@ -13,7 +13,7 @@ namespace TicTacToe {
 				Move chooseMove(Board<char> &board, char symbol) override;
 
 			  private:
-				int32_t evaluate(const Board<char> &board, char forSymbol);
+				static int32_t evaluate(const Board<char> &board, char forSymbol);
 				int32_t minimax(Board<char> &board, char symbol, bool isMaximizing);
 		};
 } // namespace TicTacToe
