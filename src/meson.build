@@ -8,9 +8,18 @@ lib_src = files(
 
 tictactoe_inc = include_directories('lib')
 
-library_tictactoe = library('tictactoe', sources: lib_src, include_directories: tictactoe_inc)
+library_tictactoe = library(
+  'tictactoe',
+  sources: lib_src,
+  dependencies: [tracy_dep],
+  include_directories: tictactoe_inc,
+  cpp_args: common_args,
+)
 
-tictactoe_dep = declare_dependency(link_with: library_tictactoe, include_directories: tictactoe_inc)
+tictactoe_dep = declare_dependency(
+  link_with: library_tictactoe,
+  include_directories: tictactoe_inc,
+)
 
 src = files('main.cpp')
 

@@ -6,10 +6,18 @@ project(
   default_options: 'cpp_std=c++20',
 )
 
+tracy_dep = []
+common_args = []
+
+if get_option('tracy_enable')
+  tracy_dep = [dependency('tracy')]
+  common_args += ['-DTRACY_ENABLE', '-DTRACY_NO_EXIT']
+endif
+
 subdir('src')
 
 if get_option('tests')
-  catch2_dep = dependency('catch2-with-main', default_options : ['tests=false'])
+  catch2_dep = dependency('catch2-with-main', default_options: ['tests=false'])
 
   if catch2_dep.found()
     subdir('tests')
