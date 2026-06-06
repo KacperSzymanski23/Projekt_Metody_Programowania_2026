@@ -1,6 +1,8 @@
 #include "ticTacToeGame.h"
 #include "myexceptions.h"
 #include "utils.h"
+// Tracy
+#include <tracy/Tracy.hpp>
 
 namespace TicTacToe {
 
@@ -9,6 +11,7 @@ namespace TicTacToe {
 			, m_xStrategy(xStrategy)
 			, m_oStrategy(oStrategy)
 			, m_currentTurnSymbol('X') {
+				ZoneScoped;
 
 				if (board == nullptr) {
 						throw MyExceptions::InvalidArgumentException("Board cannot be nullptr");
@@ -22,6 +25,8 @@ namespace TicTacToe {
 		}
 
 		bool TicTacToeGame::makeMove(Move move, char symbol) {
+				ZoneScoped;
+
 				if (symbol != 'X' && symbol != 'O') {
 						throw MyExceptions::InvalidSymbolException("Symbol must be X or O");
 						throw MyExceptions::InvalidSymbolException("Symbol must be X or O");
@@ -49,6 +54,8 @@ namespace TicTacToe {
 		}
 
 		void TicTacToeGame::play() {
+				ZoneScoped;
+
 				if (m_board->isEmpty()) {
 						m_currentTurnSymbol = 'X';
 				}
@@ -66,6 +73,8 @@ namespace TicTacToe {
 		}
 
 		char TicTacToeGame::winner() const {
+				ZoneScoped;
+
 				if (Utils::hasWon(*m_board, 'X')) {
 						return 'X';
 				}
@@ -82,6 +91,8 @@ namespace TicTacToe {
 		}
 
 		void TicTacToeGame::changeStrategy(char symbol, Strategy *strategy) {
+				ZoneScoped;
+
 				if (symbol != 'X' && symbol != 'O') {
 						throw MyExceptions::InvalidSymbolException("Symbol must be X or O");
 				}

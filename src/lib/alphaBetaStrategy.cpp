@@ -3,9 +3,13 @@
 #include "utils.h"
 // STD
 #include <limits>
+// Tracy
+#include <tracy/Tracy.hpp>
 
 namespace TicTacToe {
 		Move AlphaBetaStrategy::chooseMove(Board<char> &board, char symbol) {
+				ZoneScoped;
+
 				if (symbol != 'X' && symbol != 'O') {
 						throw MyExceptions::InvalidSymbolException("Symbol must be X or O");
 				}
@@ -51,6 +55,8 @@ namespace TicTacToe {
 		}
 
 		int32_t AlphaBetaStrategy::evaluate(const Board<char> &board, char forSymbol) {
+				ZoneScoped;
+
 				if (Utils::hasWon(board, forSymbol)) {
 						return 1;
 				}
@@ -63,6 +69,8 @@ namespace TicTacToe {
 		}
 
 		int32_t AlphaBetaStrategy::alphaBeta(Board<char> &board, char symbol, bool isMaximizing, int32_t alpha, int32_t beta) {
+				ZoneScoped;
+
 				const int32_t SCORE = evaluate(board, symbol);
 
 				if (SCORE != 0 || board.full()) {

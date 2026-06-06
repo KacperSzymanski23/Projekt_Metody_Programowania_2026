@@ -1,8 +1,12 @@
 #include "board.h"
+// Tracy
+#include <tracy/Tracy.hpp>
 
 namespace Utils {
 
 		inline bool hasWon(const TicTacToe::Board<char> &board, char symbol) noexcept {
+				ZoneScoped;
+
 				const size_t BOARD_SIZE = board.size();
 
 				bool win{};

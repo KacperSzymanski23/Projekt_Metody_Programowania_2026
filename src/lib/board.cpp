@@ -1,7 +1,11 @@
 #include "board.h"
+// Tracy
+#include <tracy/Tracy.hpp>
 
 namespace TicTacToe {
 		std::ostream &operator<<(std::ostream &output, const Board<char> &board) {
+				ZoneScoped;
+
 				const size_t BOARD_SIZE = board.size();
 
 				for (size_t y = 0; y < BOARD_SIZE; y++) {
