@@ -37,7 +37,7 @@ TEST_CASE("TicTacToeGame: game is not finished on an empty board", "[game]") {
 		TicTacToe::TicTacToeGame game{&b, &s, &s};
 
 		REQUIRE_FALSE(game.finished());
-		REQUIRE(game.winner() == '\0');
+		REQUIRE(game.winner() == '.');
 }
 
 /**

@@ -30,7 +30,7 @@ TEST_CASE("BoardExt: all cells are '0' after construction", "[board]") {
 		TicTacToe::BoardExt<> b{3};
 		for (size_t row{}; row < 3U; ++row) {
 				for (size_t col = 0; col < 3U; ++col) {
-						REQUIRE(b(col, row) == '\0');
+						REQUIRE(b(col, row) == '.');
 				}
 		}
 }
@@ -51,7 +51,7 @@ TEST_CASE("BoardExt: operator() read/write round-trip", "[board]") {
 
 		REQUIRE(b(0U, 0U) == 'X');
 		REQUIRE(b(2U, 1U) == 'O');
-		REQUIRE(b(1U, 1U) == '\0'); // puste pole
+		REQUIRE(b(1U, 1U) == '.'); // puste pole
 }
 
 TEST_CASE("BoardExt: out-of-range mutable access throws", "[board]") {
@@ -87,7 +87,7 @@ TEST_CASE("BoardExt: full() returns false when one cell remains empty", "[board]
 						b(col, row) = 'X';
 				}
 		}
-		b(2U, 2U) = '\0';
+		b(2U, 2U) = '.';
 		REQUIRE_FALSE(b.full());
 }
 
@@ -100,7 +100,7 @@ TEST_CASE("BoardExt: clear() resets all cells to '0'", "[board]") {
 
 		for (size_t row{}; row < 3U; ++row) {
 				for (size_t col{}; col < 3U; ++col) {
-						REQUIRE(b(col, row) == '\0');
+						REQUIRE(b(col, row) == '.');
 				}
 		}
 		REQUIRE_FALSE(b.full());
@@ -128,7 +128,7 @@ TEST_CASE("operator<<: streams board rows separated by newlines", "[board]") {
 		const std::string RESULT = oss.str();
 
 		REQUIRE(RESULT.find("XOX") != std::string::npos);
-		REQUIRE(RESULT.find("\0\0\0") != std::string::npos);
+		REQUIRE(RESULT.find("...") != std::string::npos);
 }
 
 TEST_CASE("operator<<: empty board outputs only dots", "[board]") {

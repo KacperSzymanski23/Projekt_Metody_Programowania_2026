@@ -42,7 +42,7 @@ namespace TicTacToe {
 						throw MyExceptions::InvalidArgumentException("Move coordinates out of range");
 				}
 
-				if ((*m_board)(move.x(), move.y()) != '\0') {
+				if ((*m_board)(move.x(), move.y()) != '.') {
 						return false;
 				}
 
@@ -69,7 +69,7 @@ namespace TicTacToe {
 		}
 
 		bool TicTacToeGame::finished() const {
-				return winner() != '\0';
+				return winner() != '.';
 		}
 
 		char TicTacToeGame::winner() const {
@@ -87,7 +87,7 @@ namespace TicTacToe {
 						return 'D';
 				}
 
-				return '\0';
+				return '.';
 		}
 
 		void TicTacToeGame::changeStrategy(char symbol, Strategy *strategy) {

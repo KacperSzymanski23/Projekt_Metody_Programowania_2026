@@ -30,12 +30,12 @@ namespace TicTacToe {
 
 				for (size_t row{}; row < BOARD_SIZE; ++row) {
 						for (size_t column{}; column < BOARD_SIZE; ++column) {
-								if (board(column, row) == '\0') {
+								if (board(column, row) == '.') {
 										board(column, row) = symbol;
 
 										const int32_t SCORE = alphaBeta(board, symbol, false, ALPHA_INIT, BETA_INIT);
 
-										board(column, row) = '\0';
+										board(column, row) = '.';
 
 										if (SCORE > bestScore || !found) {
 												bestScore = SCORE;
@@ -85,12 +85,12 @@ namespace TicTacToe {
 
 						for (size_t row{}; row < BOARD_SIZE; ++row) {
 								for (size_t column{}; column < BOARD_SIZE; ++column) {
-										if (board(column, row) == '\0') {
+										if (board(column, row) == '.') {
 												board(column, row) = CURRENT_SYMBOL;
 
 												const int32_t TEMP_SCORE = alphaBeta(board, symbol, false, alpha, beta);
 
-												board(column, row) = '\0';
+												board(column, row) = '.';
 
 												bestScore = std::max(bestScore, TEMP_SCORE);
 												alpha = std::max(alpha, bestScore);
@@ -109,12 +109,12 @@ namespace TicTacToe {
 
 				for (size_t row{}; row < BOARD_SIZE; ++row) {
 						for (size_t column{}; column < BOARD_SIZE; ++column) {
-								if (board(column, row) == '\0') {
+								if (board(column, row) == '.') {
 										board(column, row) = CURRENT_SYMBOL;
 
 										const int32_t TEMP_SCORE = alphaBeta(board, symbol, true, alpha, beta);
 
-										board(column, row) = '\0';
+										board(column, row) = '.';
 
 										bestScore = std::min(bestScore, TEMP_SCORE);
 										beta = std::min(beta, bestScore);

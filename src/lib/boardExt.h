@@ -14,7 +14,7 @@ namespace TicTacToe {
 			  public:
 				explicit BoardExt(size_t size)
 					: m_n(size)
-					, m_fields(size * size, static_cast<T>(NULL)) {
+					, m_fields(size * size, static_cast<T>('.')) {
 						if (size < 3U) {
 								throw MyExceptions::InvalidArgumentException("Board size must be at least 3");
 						}
@@ -33,12 +33,12 @@ namespace TicTacToe {
 
 				[[nodiscard]] bool full() const override {
 						return std::none_of(m_fields.cbegin(), m_fields.cend(), [](T field) {
-								return field == static_cast<T>(NULL) || field == static_cast<T>('0');
+								return field == static_cast<T>('.') || field == static_cast<T>('0');
 						});
 				}
 
 				void clear() override {
-						std::fill(m_fields.begin(), m_fields.end(), static_cast<T>(NULL));
+						std::fill(m_fields.begin(), m_fields.end(), static_cast<T>('.'));
 				}
 
 				T &operator()(size_t x, size_t y) override {
@@ -53,7 +53,7 @@ namespace TicTacToe {
 
 				[[nodiscard]] bool isEmpty() const override {
 						return std::any_of(m_fields.cbegin(), m_fields.cend(), [](T field) {
-								return field == static_cast<T>(NULL) || field == static_cast<T>('0');
+								return field == static_cast<T>('.') || field == static_cast<T>('0');
 						});
 				}
 

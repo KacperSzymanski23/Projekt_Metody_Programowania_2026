@@ -17,7 +17,7 @@ static void loadBoard(TicTacToe::Board<> &board, const char *cells) {
 		for (size_t row{}; row < N; ++row) {
 				for (size_t col{}; col < N; ++col) {
 						const char CELL{cells[(row * N) + col]};
-						board(col, row) = CELL == '0' ? '\0' : CELL;
+						board(col, row) = CELL == '0' ? '.' : CELL;
 				}
 		}
 }
@@ -157,8 +157,8 @@ TEST_CASE("Both strategies choose a valid empty cell on fresh 3x3", "[equivalenc
 		const TicTacToe::Move MM_MOVE = mm.chooseMove(b, 'X');
 		const TicTacToe::Move AB_MOVE = ab.chooseMove(b, 'X');
 
-		REQUIRE(b(MM_MOVE.x(), MM_MOVE.y()) == '\0');
-		REQUIRE(b(AB_MOVE.x(), AB_MOVE.y()) == '\0');
+		REQUIRE(b(MM_MOVE.x(), MM_MOVE.y()) == '.');
+		REQUIRE(b(AB_MOVE.x(), AB_MOVE.y()) == '.');
 }
 
 TEST_CASE("MinMax first move on 3x3 is within board bounds", "[minmax]") {

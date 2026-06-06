@@ -28,12 +28,12 @@ namespace TicTacToe {
 
 				for (size_t row{}; row < BOARD_SIZE; ++row) {
 						for (size_t column{}; column < BOARD_SIZE; ++column) {
-								if (board(column, row) == '\0') {
+								if (board(column, row) == '.') {
 										board(column, row) = symbol;
 
 										const int32_t SCORE = minimax(board, symbol, false);
 
-										board(column, row) = '\0';
+										board(column, row) = '.';
 
 										if (SCORE > bestScore || !found) {
 												bestScore = SCORE;
@@ -82,12 +82,12 @@ namespace TicTacToe {
 						int32_t best = std::numeric_limits<int32_t>::min();
 						for (size_t row{}; row < BOARD_SIZE; ++row) {
 								for (size_t column{}; column < BOARD_SIZE; ++column) {
-										if (board(column, row) == '\0') {
+										if (board(column, row) == '.') {
 												board(column, row) = CURRENT_SYMBOL;
 
 												best = std::max(best, minimax(board, symbol, false));
 
-												board(column, row) = '\0';
+												board(column, row) = '.';
 										}
 								}
 						}
@@ -97,12 +97,12 @@ namespace TicTacToe {
 				int32_t best = std::numeric_limits<int32_t>::max();
 				for (size_t row{}; row < BOARD_SIZE; ++row) {
 						for (size_t column{}; column < BOARD_SIZE; ++column) {
-								if (board(column, row) == '\0') {
+								if (board(column, row) == '.') {
 										board(column, row) = CURRENT_SYMBOL;
 
 										best = std::min(best, minimax(board, symbol, true));
 
-										board(column, row) = '\0';
+										board(column, row) = '.';
 								}
 						}
 				}
