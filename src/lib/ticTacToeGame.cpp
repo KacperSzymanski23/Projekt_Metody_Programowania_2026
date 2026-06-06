@@ -29,7 +29,6 @@ namespace TicTacToe {
 
 				if (symbol != 'X' && symbol != 'O') {
 						throw MyExceptions::InvalidSymbolException("Symbol must be X or O");
-						throw MyExceptions::InvalidSymbolException("Symbol must be X or O");
 				}
 
 				if (finished()) {
