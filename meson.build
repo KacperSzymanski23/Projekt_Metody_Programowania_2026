@@ -6,11 +6,11 @@ project(
   default_options: 'cpp_std=c++20',
 )
 
-tracy_dep = []
 common_args = []
 
+tracy_dep = dependency('tracy')
+
 if get_option('tracy_enable')
-  tracy_dep = [dependency('tracy')]
   common_args += ['-DTRACY_ENABLE', '-DTRACY_NO_EXIT']
 endif
 
